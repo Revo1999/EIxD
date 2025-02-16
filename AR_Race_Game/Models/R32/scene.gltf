@@ -1,0 +1,942 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 3388,
+      "max": [
+        0.6784371733665466,
+        1.6490240097045898,
+        0.6099485158920288
+      ],
+      "min": [
+        -0.6784761548042297,
+        -1.6761937141418457,
+        -0.2789953351020813
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 40656,
+      "componentType": 5126,
+      "count": 3388,
+      "max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 3388,
+      "max": [
+        1.0,
+        1.0
+      ],
+      "min": [
+        0.0,
+        0.0
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 5124,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 81312,
+      "componentType": 5126,
+      "count": 1074,
+      "max": [
+        0.6529391407966614,
+        1.649160385131836,
+        0.6080276370048523
+      ],
+      "min": [
+        -0.6529781222343445,
+        -1.6733403205871582,
+        -0.2371426373720169
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 94200,
+      "componentType": 5126,
+      "count": 1074,
+      "max": [
+        1.0,
+        0.9998843669891357,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 27104,
+      "componentType": 5126,
+      "count": 1074,
+      "max": [
+        1.0,
+        1.000017523765564
+      ],
+      "min": [
+        0.0,
+        0.0
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 20496,
+      "componentType": 5125,
+      "count": 1644,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 107088,
+      "componentType": 5126,
+      "count": 16,
+      "max": [
+        0.5205653309822083,
+        -1.4669315814971924,
+        0.13774386048316956
+      ],
+      "min": [
+        -0.5206043124198914,
+        -1.6249853372573853,
+        0.05436180531978607
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 107280,
+      "componentType": 5126,
+      "count": 16,
+      "max": [
+        0.4362378716468811,
+        -0.8569679856300354,
+        0.2744128108024597
+      ],
+      "min": [
+        -0.4362383484840393,
+        -0.9115281105041504,
+        -0.0025128258857876062
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 35696,
+      "componentType": 5126,
+      "count": 16,
+      "max": [
+        0.0,
+        0.0
+      ],
+      "min": [
+        0.0,
+        0.0
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 27072,
+      "componentType": 5125,
+      "count": 24,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 107472,
+      "componentType": 5126,
+      "count": 30,
+      "max": [
+        0.6116164922714233,
+        -1.3632481098175049,
+        0.1381409615278244
+      ],
+      "min": [
+        -0.6116554737091064,
+        -1.5074660778045654,
+        0.05436180531978607
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 107832,
+      "componentType": 5126,
+      "count": 30,
+      "max": [
+        0.8907378911972046,
+        -0.36264556646347046,
+        0.551171064376831
+      ],
+      "min": [
+        -0.8907378315925598,
+        -0.8871765732765198,
+        0.16386042535305023
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 35824,
+      "componentType": 5126,
+      "count": 30,
+      "max": [
+        0.0,
+        0.0
+      ],
+      "min": [
+        0.0,
+        0.0
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 27168,
+      "componentType": 5125,
+      "count": 42,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 108192,
+      "componentType": 5126,
+      "count": 170,
+      "max": [
+        0.6755208373069763,
+        1.1732778549194336,
+        0.6014775037765503
+      ],
+      "min": [
+        -0.6755598187446594,
+        -0.6993147730827332,
+        0.29484936594963074
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 110232,
+      "componentType": 5126,
+      "count": 170,
+      "max": [
+        0.8932966589927673,
+        0.9944867491722107,
+        0.9122005701065063
+      ],
+      "min": [
+        -0.8932968378067017,
+        -0.46308189630508423,
+        -1.5229552445816807e-06
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 36064,
+      "componentType": 5126,
+      "count": 170,
+      "max": [
+        0.625,
+        1.0
+      ],
+      "min": [
+        0.0,
+        0.0
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 27336,
+      "componentType": 5125,
+      "count": 258,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 112272,
+      "componentType": 5126,
+      "count": 1628,
+      "max": [
+        0.6656476855278015,
+        1.5971438884735107,
+        0.17809022963047028
+      ],
+      "min": [
+        -0.6656866669654846,
+        -1.642935037612915,
+        -0.36763042211532593
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 131808,
+      "componentType": 5126,
+      "count": 1628,
+      "max": [
+        1.0,
+        0.9998591542243958,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 37424,
+      "componentType": 5126,
+      "count": 1628,
+      "max": [
+        0.875,
+        1.0
+      ],
+      "min": [
+        0.0,
+        0.0
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 28368,
+      "componentType": 5125,
+      "count": 2556,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 151344,
+      "componentType": 5126,
+      "count": 288,
+      "max": [
+        0.5281463861465454,
+        1.5982460975646973,
+        0.25588539242744446
+      ],
+      "min": [
+        -0.5281854271888733,
+        1.5639400482177734,
+        0.14277981221675873
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 154800,
+      "componentType": 5126,
+      "count": 288,
+      "max": [
+        0.9698364734649658,
+        0.9905951619148254,
+        0.9582706093788147
+      ],
+      "min": [
+        -0.9698381423950195,
+        -0.9905949831008911,
+        -0.9582703113555908
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 50448,
+      "componentType": 5126,
+      "count": 288,
+      "max": [
+        1.0,
+        1.0
+      ],
+      "min": [
+        7.450580596923828e-08,
+        0.01000000536441803
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 38592,
+      "componentType": 5125,
+      "count": 528,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 158256,
+      "componentType": 5126,
+      "count": 88,
+      "max": [
+        0.15867920219898224,
+        1.649160385131836,
+        0.2827508747577667
+      ],
+      "min": [
+        -0.15379662811756134,
+        -1.6733403205871582,
+        -0.14840544760227203
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 159312,
+      "componentType": 5126,
+      "count": 88,
+      "max": [
+        0.9663782715797424,
+        1.0,
+        0.8810523152351379
+      ],
+      "min": [
+        -0.9663715958595276,
+        -1.0,
+        -0.8810544013977051
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 52752,
+      "componentType": 5126,
+      "count": 88,
+      "max": [
+        1.0,
+        1.0
+      ],
+      "min": [
+        7.450580596923828e-08,
+        0.01000000536441803
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 40704,
+      "componentType": 5125,
+      "count": 156,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 160368,
+      "componentType": 5126,
+      "count": 2574,
+      "max": [
+        0.6619101762771606,
+        1.1177961826324463,
+        0.05497993528842926
+      ],
+      "min": [
+        -0.6619492769241333,
+        -1.1417009830474854,
+        -0.29577529430389404
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 191256,
+      "componentType": 5126,
+      "count": 2574,
+      "max": [
+        1.0,
+        0.9998931884765625,
+        0.9868036508560181
+      ],
+      "min": [
+        -1.0,
+        -0.999764084815979,
+        -0.9998155236244202
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 53456,
+      "componentType": 5126,
+      "count": 2574,
+      "max": [
+        0.4782535433769226,
+        0.49000000953674316
+      ],
+      "min": [
+        0.0,
+        0.0
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 41328,
+      "componentType": 5125,
+      "count": 3936,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "W1ZZERZ (https://sketchfab.com/W1ZZERZ)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/low-poly-nissan-skyline-gt-r-viii-r32-f7865db326074f28a9f08e2b0a8b6540",
+      "title": "Low poly Nissan Skyline GT-R VIII (R32)"
+    },
+    "generator": "Sketchfab-12.66.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 57072,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 74048,
+      "byteOffset": 57072,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 222144,
+      "byteOffset": 131120,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 353264,
+      "uri": "scene.bin"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Material.001",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0985042,
+          0.0985042,
+          0.0985042,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.9872831599189171
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Material.002",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0219792,
+          0.0219792,
+          0.0219792,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.9971596613960501
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Material.005",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.998961,
+          1.0,
+          0.772659,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.7218623510441005
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Material.004",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1.0,
+          0.169535,
+          0.0382092,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.9047922760194274
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Material.003",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0692925,
+          0.0835793,
+          0.102472,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.9772270472865214
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Material.007",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0110877,
+          0.0110877,
+          0.0110877,
+          1.0
+        ],
+        "metallicFactor": 0.0
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Material.006",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1.0,
+          0.0,
+          0.00605406,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.93974400789241
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Material.009",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.8,
+          0.8,
+          0.8,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.7995748614926665
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Material.008",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.281009,
+          0.281009,
+          0.281009,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.9371644773710761
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.001_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.002_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 5,
+            "POSITION": 4,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.005_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 9,
+            "POSITION": 8,
+            "TEXCOORD_0": 10
+          },
+          "indices": 11,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.004_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 13,
+            "POSITION": 12,
+            "TEXCOORD_0": 14
+          },
+          "indices": 15,
+          "material": 3,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.003_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 17,
+            "POSITION": 16,
+            "TEXCOORD_0": 18
+          },
+          "indices": 19,
+          "material": 4,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.007_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 21,
+            "POSITION": 20,
+            "TEXCOORD_0": 22
+          },
+          "indices": 23,
+          "material": 5,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.006_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 25,
+            "POSITION": 24,
+            "TEXCOORD_0": 26
+          },
+          "indices": 27,
+          "material": 6,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.009_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 29,
+            "POSITION": 28,
+            "TEXCOORD_0": 30
+          },
+          "indices": 31,
+          "material": 7,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.008_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 33,
+            "POSITION": 32,
+            "TEXCOORD_0": 34
+          },
+          "indices": 35,
+          "material": 8,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.0,
+        0.0,
+        -0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Low poly Nissan Skyline GT-R VIII (R32).fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "matrix": [
+        99.99966430664063,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.629206793918314e-05,
+        -99.99999999999868,
+        0.0,
+        0.0,
+        96.5234069824206,
+        -1.5725659042790416e-05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)"
+    },
+    {
+      "mesh": 0,
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.001_0"
+    },
+    {
+      "mesh": 1,
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.002_0"
+    },
+    {
+      "mesh": 2,
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.005_0"
+    },
+    {
+      "mesh": 3,
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.004_0"
+    },
+    {
+      "mesh": 4,
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.003_0"
+    },
+    {
+      "mesh": 5,
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.007_0"
+    },
+    {
+      "mesh": 6,
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.006_0"
+    },
+    {
+      "mesh": 7,
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.009_0"
+    },
+    {
+      "mesh": 8,
+      "name": "Low poly Nissan Skyline GT-R VIII (R32)_Material.008_0"
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}
