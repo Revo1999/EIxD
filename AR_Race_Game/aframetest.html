@@ -120,9 +120,9 @@
       // Set speed for each car (base speed)
       const baseSpeed = 0.7; // All cars have a similar starting speed
       const carSpeeds = {
-        'car-ae86': baseSpeed + Math.random()*0.2,
-        'car-r32': baseSpeed + Math.random()*0.2,
-        'car-s13': baseSpeed + Math.random()*0.2
+        'car-ae86': baseSpeed + Math.random()*0.09,
+        'car-r32': baseSpeed + Math.random()*0.09,
+        'car-s13': baseSpeed + Math.random()*0.09
       };
 
       // Winner gets a speed boost for the final stretch
@@ -149,8 +149,8 @@
             }
 
             // After 100z, boost the winner's speed
-            if (currentPosition >= 125 && carId === winner) {
-              speed = 1.2;  // Boost winner's speed for the last stretch
+            if (currentPosition >= 140 && carId === winner) {
+              speed = 1.35;  // Boost winner's speed for the last stretch
             }
 
             // Ensure cars finish within 10-20 units of each other
