@@ -39,7 +39,7 @@
   <!-- Marker -->
   <a-marker preset="kanji">
 
-  <a-entity scale="0.02 0.02 0.02"
+  <a-entity scale="0.02 0.02 0.02" rotation="0 180 0"
 
     <a-assets>
       <a-asset-item id="ae86" src="Models/AE86/scene.gltf"></a-asset-item>
@@ -48,7 +48,7 @@
     </a-assets>
 
     <!-- Race Track -->
-    <a-plane position="0 0.01 0" rotation="-90 0 0" width="30" height="250" color="grey"></a-plane>
+    <a-plane position="0 0.01 100" rotation="-90 0 0" width="30" height="250" color="grey"></a-plane>
 
     <!-- Starting Line (White Line) -->
     <a-plane position="0 0.02 0" rotation="-90 0 0" width="30" height="0.5" color="white"></a-plane>
@@ -58,9 +58,9 @@
              material="src: https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Checkerboard_pattern.svg/500px-Checkerboard_pattern.svg.png; repeat: 10 1"></a-plane>
 
     <!-- Cars -->
-    <a-entity id="car-ae86" gltf-model="#ae86" position="-3 0.02 0" scale="0.6 0.6 0.6"></a-entity>
-    <a-entity id="car-r32" gltf-model="#r32" position="-11 0.02 0" scale="4 4 4"></a-entity>
-    <a-entity id="car-s13" gltf-model="#s13" position="5 0.02 0" scale="4 4 4"></a-entity>
+    <a-entity id="car-ae86" gltf-model="#ae86" position="-3 0.02 -10" scale="0.6 0.6 0.6" ></a-entity>
+    <a-entity id="car-r32" gltf-model="#r32" position="-11 0.02 -10" scale="4 4 4" ></a-entity>
+    <a-entity id="car-s13" gltf-model="#s13" position="5 0.02 -10" scale="4 4 4" ></a-entity>
 
     <!-- Odds Labels with billboard component -->
     <a-entity id="text-container-ae86" position="-3 10 0">
@@ -181,6 +181,16 @@
       });
     };
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log("Countdown started! Race will begin in 10 seconds...");
+
+    setTimeout(() => {
+      console.log("Starting the race now!");
+      startRace(); // Execute the race after 10 seconds
+    }, 10000); // 10000ms = 10 seconds
+  });
+
 </script>
 
 </body>
