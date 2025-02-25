@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   
   <!-- Add billboard component -->
   <script>
@@ -34,7 +35,7 @@
 
 <div id="raceInfo">Choose your car and run startRace() from the console to start the race!</div>
 
-<a-scene id="scene">
+<a-scene embedded arjs>
   <a-assets>
     <a-asset-item id="ae86" src="Models/AE86/scene.gltf"></a-asset-item>
     <a-asset-item id="r32" src="Models/R32/scene.gltf"></a-asset-item>
@@ -57,9 +58,7 @@
   <a-entity id="car-s13" gltf-model="#s13" position="5 0.15 -5" scale="4 4 4"></a-entity>
 
   <!-- Camera -->
-  <a-entity position="140 100 140" rotation="-10 80 6">
-    <a-camera></a-camera>
-  </a-entity>
+  <a-marker-camera preset="hiro"></a-marker-camera>
 
   <!-- Odds Labels with billboard component -->
   <a-entity id="text-container-ae86" position="-3 10 -5">
