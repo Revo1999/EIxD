@@ -1,449 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>3D Car Models in A-Frame with Betting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Race Betting</title>
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  
-  <!-- Add billboard component -->
-  <script>
-    AFRAME.registerComponent('billboard', {
-      tick: function () {
-        var mainCam = document.querySelector('[camera]').object3D;
-        var thisEl = this.el.object3D;
-        var camPosition = mainCam.position;
-        thisEl.lookAt(camPosition);
-      }
-    });
-    
-    // Custom component for bet buttons
-    AFRAME.registerComponent('bet-button', {
-      schema: {
-        car: {type: 'string'},
-        label: {type: 'string'}
-      },
-      init: function() {
-        const el = this.el;
-        const data = this.data;
-        
-        el.addEventListener('click', function() {
-          // Trigger bet event
-          const event = new CustomEvent('place-bet', {
-            detail: {carId: data.car}
-          });
-          document.dispatchEvent(event);
-        });
-      }
-    });
-  </script>
-  
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
   <style>
-    /* UI Elements */
-    #gameUI {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
+    body {
       font-family: Arial, sans-serif;
-      pointer-events: none;
-    }
-    
-    #moneyDisplay {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background-color: rgba(0,0,0,0.7);
-      color: #00ff00;
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    
-    #raceInfo {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(0,0,0,0.7);
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 18px;
       text-align: center;
-      min-width: 200px;
     }
-    
-    #countdown {
-      position: absolute;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: yellow;
-      font-size: 36px;
-      font-weight: bold;
-      text-align: center;
-      text-shadow: 2px 2px 4px #000;
-      display: none;
+    #money, #raceInfo, #countdown {
+      margin: 10px;
+      font-size: 20px;
     }
-    
-    #resultDisplay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(0,0,0,0.8);
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      font-size: 24px;
-      text-align: center;
-      display: none;
-      pointer-events: auto;
-    }
-    
-    #restartButton {
-      margin-top: 15px;
+    .bet-button {
       padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
       font-size: 16px;
+      margin: 10px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <!-- UI Elements -->
-  <div id="gameUI">
-    <div id="moneyDisplay">$1000</div>
-    <div id="raceInfo">Place your bets!</div>
-    <div id="countdown"></div>
-    <div id="resultDisplay">
-      <div id="result"></div>
-      <button id="restartButton">Play Again</button>
-    </div>
-  </div>
 
-  <a-scene embedded arjs>
-    <!-- Assets -->
-    <a-assets>
-      <a-asset-item id="ae86" src="Models/AE86/scene.gltf"></a-asset-item>
-      <a-asset-item id="r32" src="Models/R32/scene.gltf"></a-asset-item>
-      <a-asset-item id="s13" src="Models/S13/scene.gltf"></a-asset-item>
-    </a-assets>
+<div id="money">Money: $1000</div>
+<div id="countdown">Waiting for bets...</div>
+<div id="raceInfo">Place your bets to start the race!</div>
 
-    <!-- Marker -->
-    <a-marker preset="kanji">
-      <a-entity scale="0.02 0.02 0.02" rotation="0 180 0" position="0 0 2">
-        <!-- Race Track -->
-        <a-plane position="0 0.01 100" rotation="-90 0 0" width="30" height="250" color="grey"></a-plane>
+<!-- Betting Buttons -->
+<button class="bet-button" id="bet-ae86" onclick="placeBet('AE86')">Bet on AE86 ($100)</button>
+<button class="bet-button" id="bet-r32" onclick="placeBet('R32')">Bet on R32 ($100)</button>
+<button class="bet-button" id="bet-s13" onclick="placeBet('S13')">Bet on S13 ($100)</button>
 
-        <!-- Starting Line (White Line) -->
-        <a-plane position="0 0.02 0" rotation="-90 0 0" width="30" height="0.5" color="white"></a-plane>
-
-        <!-- Finish Line (Checkered Pattern) -->
-        <a-plane id="finish-line" position="0 0.02 200" rotation="-90 0 0" width="30" height="1" 
-                 material="src: https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Checkerboard_pattern.svg/500px-Checkerboard_pattern.svg.png; repeat: 10 1"></a-plane>
-
-        <!-- Cars -->
-        <a-entity id="car-ae86" gltf-model="#ae86" position="-3 0.02 -10" scale="0.6 0.6 0.6"></a-entity>
-        <a-entity id="car-r32" gltf-model="#r32" position="-11 0.02 -10" scale="4 4 4"></a-entity>
-        <a-entity id="car-s13" gltf-model="#s13" position="5 0.02 -10" scale="4 4 4"></a-entity>
-
-        <!-- Betting Buttons with billboard component -->
-<a-entity id="text-container-ae86" position="-3 2 0">
-  <a-plane color="#ff5252" width="6" height="3" billboard bet-button="car: car-ae86; label: AE86" class="clickable">
-    <a-text value="AE86\nOdds: 1:3\nBet: $0" id="bet-text-ae86" align="center" 
-            color="white" position="0 0 0.1" scale="5 5 5"></a-text>
-  </a-plane>
-</a-entity>
-
-<a-entity id="text-container-r32" position="-11 2 0">
-  <a-plane color="#4CAF50" width="6" height="3" billboard bet-button="car: car-r32; label: R32" class="clickable">
-    <a-text value="R32\nOdds: 1:2\nBet: $0" id="bet-text-r32" align="center" 
-            color="white" position="0 0 0.1" scale="5 5 5"></a-text>
-  </a-plane>
-</a-entity>
-
-<a-entity id="text-container-s13" position="5 2 0">
-  <a-plane color="#2196F3" width="6" height="3" billboard bet-button="car: car-s13; label: S13" class="clickable">
-    <a-text value="S13\nOdds: 1:4\nBet: $0" id="bet-text-s13" align="center" 
-            color="white" position="0 0 0.1" scale="5 5 5"></a-text>
-  </a-plane>
-</a-entity>
-
-      </a-entity>
-    </a-marker>
-
-    <!-- Camera with cursor for interaction -->
-    <a-entity camera>
-      <a-cursor raycaster="objects: .clickable"></a-cursor>
+<!-- AR Scene -->
+<a-scene embedded arjs="sourceType: webcam;">
+  <a-assets>
+    <a-asset-item id="ae86" src="Models/AE86/scene.gltf"></a-asset-item>
+    <a-asset-item id="r32" src="Models/R32/scene.gltf"></a-asset-item>
+    <a-asset-item id="s13" src="Models/S13/scene.gltf"></a-asset-item>
+  </a-assets>
+  <a-marker preset="kanji">
+    <a-entity scale="0.02 0.02 0.02" rotation="0 180 0" position="0 0 2">
+      <a-plane position="0 0.01 100" rotation="-90 0 0" width="30" height="250" color="grey"></a-plane>
+      <a-plane position="0 0.02 0" rotation="-90 0 0" width="30" height="0.5" color="white"></a-plane>
+      <a-plane position="0 0.02 200" rotation="-90 0 0" width="30" height="1" material="src: https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Checkerboard_pattern.svg/500px-Checkerboard_pattern.svg.png; repeat: 10 1"></a-plane>
+      <a-entity id="car-ae86" gltf-model="#ae86" position="-3 0.02 -10" scale="0.6 0.6 0.6"></a-entity>
+      <a-entity id="car-r32" gltf-model="#r32" position="-11 0.02 -10" scale="4 4 4"></a-entity>
+      <a-entity id="car-s13" gltf-model="#s13" position="5 0.02 -10" scale="4 4 4"></a-entity>
     </a-entity>
-  </a-scene>
+  </a-marker>
+  <a-entity camera></a-entity>
+</a-scene>
 
-  <script>
-    // Make sure raycaster works properly on mobile
-    AFRAME.registerComponent('cursor-listener', {
-      init: function () {
-        this.el.addEventListener('click', function (evt) {
-          console.log('I was clicked at: ', evt.detail.intersection.point);
-        });
+<script>
+  let money = 1000;
+  let currentBet = null;
+  let carSpeeds = { 'AE86': 0.7, 'R32': 0.75, 'S13': 0.65 };
+
+  function placeBet(car) {
+    if (currentBet) return;
+    currentBet = car;
+    money -= 100;
+    document.getElementById('money').innerText = `Money: $${money}`;
+    document.getElementById('raceInfo').innerText = `Bet placed on ${car}. Starting race...`;
+    setTimeout(startRace, 2000);
+  }
+  
+  function startRace() {
+    let raceStarted = true;
+    let winner = determineWinner();
+    document.getElementById('raceInfo').innerText = "Race in progress...";
+    
+    Object.keys(carSpeeds).forEach(carId => {
+      const car = document.getElementById(`car-${carId.toLowerCase()}`);
+      if (car) {
+        let currentPosition = car.object3D.position.z;
+        let speed = carSpeeds[carId];
+
+        const interval = setInterval(() => {
+          if (currentPosition >= 200) {
+            clearInterval(interval);
+            document.getElementById('raceInfo').innerText = `${winner} wins the race!`;
+            if (winner === currentBet) money += 300;
+            document.getElementById('money').innerText = `Money: $${money}`;
+            currentBet = null;
+            return;
+          }
+          currentPosition += speed;
+          car.setAttribute('position', {
+            x: car.object3D.position.x,
+            y: car.object3D.position.y,
+            z: currentPosition
+          });
+        }, 50);
       }
     });
+  }
+  
+  function determineWinner() {
+    const odds = { 'AE86': 3, 'R32': 2, 'S13': 4 };
+    let totalOdds = Object.values(odds).reduce((sum, odd) => sum + odd, 0);
+    let random = Math.random() * totalOdds;
+    for (const carId in odds) {
+      random -= odds[carId];
+      if (random <= 0) return carId;
+    }
+  }
+</script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-      // Game state
-      let gameState = {
-        money: 1000,
-        raceStarted: false,
-        countdownActive: false,
-        winner: null,
-        bets: {
-          'car-ae86': 0,
-          'car-r32': 0,
-          'car-s13': 0
-        },
-        carOdds: {
-          'car-ae86': 3,  // 1:3 odds
-          'car-r32': 2,   // 1:2 odds (better chance)
-          'car-s13': 4    // 1:4 odds (poorer chance)
-        },
-        carNames: {
-          'car-ae86': 'AE86',
-          'car-r32': 'R32',
-          'car-s13': 'S13'
-        },
-        betAmount: 100 // Amount added per click
-      };
-
-      // DOM Elements
-      const moneyDisplay = document.getElementById('moneyDisplay');
-      const raceInfo = document.getElementById('raceInfo');
-      const countdownElement = document.getElementById('countdown');
-      const resultDisplay = document.getElementById('resultDisplay');
-      const resultText = document.getElementById('result');
-      const restartButton = document.getElementById('restartButton');
-      
-      // Update displays
-      function updateMoneyDisplay() {
-        moneyDisplay.innerText = `$${gameState.money}`;
-      }
-
-      function updateBetDisplay(carId) {
-        const textElement = document.getElementById(`bet-text-${carId.replace('car-', '')}`);
-        const carName = gameState.carNames[carId];
-        const odds = gameState.carOdds[carId];
-        const betAmount = gameState.bets[carId];
-        
-        textElement.setAttribute('value', `${carName}\nOdds: 1:${odds}\nBet: $${betAmount}`);
-      }
-
-      // Listen for bet button clicks
-      document.addEventListener('place-bet', function(e) {
-        if (gameState.raceStarted || gameState.countdownActive) return;
-        
-        const carId = e.detail.carId;
-        
-        if (gameState.money >= gameState.betAmount) {
-          gameState.money -= gameState.betAmount;
-          gameState.bets[carId] += gameState.betAmount;
-          
-          updateMoneyDisplay();
-          updateBetDisplay(carId);
-          
-          // Check if any bets are placed to enable race start
-          const totalBets = Object.values(gameState.bets).reduce((sum, bet) => sum + bet, 0);
-          if (totalBets > 0 && !gameState.countdownActive) {
-            startCountdown();
-          }
-        } else {
-          raceInfo.innerText = "Not enough money!";
-        }
-      });
-
-      // Function to start countdown
-      function startCountdown() {
-        gameState.countdownActive = true;
-        let count = 10;
-        
-        raceInfo.innerText = "Race starting soon!";
-        countdownElement.style.display = "block";
-        countdownElement.innerText = count;
-        
-        const timer = setInterval(() => {
-          count--;
-          countdownElement.innerText = count;
-          
-          if (count <= 0) {
-            clearInterval(timer);
-            countdownElement.style.display = "none";
-            startRace();
-          }
-        }, 1000);
-      }
-
-      // Function to get winner based on odds
-      function determineWinner() {
-        // Create an array with entries based on odds
-        let pool = [];
-        for (const carId in gameState.carOdds) {
-          // Add entries inversely proportional to odds (higher odds = fewer entries)
-          const entryCount = 10 / gameState.carOdds[carId];
-          for (let i = 0; i < entryCount; i++) {
-            pool.push(carId);
-          }
-        }
-        
-        // Pick random entry from pool
-        const randomIndex = Math.floor(Math.random() * pool.length);
-        return pool[randomIndex];
-      }
-
-      // Function to start the race
-      function startRace() {
-        if (gameState.raceStarted) return;
-        gameState.raceStarted = true;
-
-        // Determine the winner based on the odds
-        gameState.winner = determineWinner();
-        console.log(`The winner is ${gameState.winner}`);
-
-        // Set speed for each car (base speed)
-        const baseSpeed = 0.7; // All cars have a similar starting speed
-        const carSpeeds = {
-          'car-ae86': baseSpeed + Math.random()*0.09,
-          'car-r32': baseSpeed + Math.random()*0.09,
-          'car-s13': baseSpeed + Math.random()*0.09
-        };
-
-        // Update race info
-        raceInfo.innerText = "Race in progress...";
-
-        const raceDistance = 200; // Finish line at z = 200
-        let raceFinished = false;
-
-        // Move cars and check for winner
-        const carIntervals = {};
-        
-        Object.keys(carSpeeds).forEach(carId => {
-          const car = document.getElementById(carId);
-          if (car) {
-            let currentPosition = car.object3D.position.z;
-            let speed = carSpeeds[carId];
-
-            carIntervals[carId] = setInterval(() => {
-              if (raceFinished) return;
-
-              // Move the car
-              if (currentPosition < 200) {
-                currentPosition += speed;
-              }
-
-              // After 140z, boost the winner's speed
-              if (currentPosition >= 140 && carId === gameState.winner) {
-                speed = 1.35;  // Boost winner's speed for the last stretch
-              }
-
-              car.setAttribute('position', {
-                x: car.object3D.position.x,
-                y: car.object3D.position.y,
-                z: currentPosition
-              });
-
-              // Check if the car has crossed the finish line
-              if (currentPosition >= raceDistance && !raceFinished) {
-                raceFinished = true;
-                
-                // Clear all intervals
-                Object.values(carIntervals).forEach(interval => clearInterval(interval));
-                
-                // End the race and show results
-                setTimeout(() => {
-                  endRace(carId);
-                }, 1000);
-              }
-            }, 50); // Update position every 50ms
-          }
-        });
-      }
-
-      // Function to end the race and show results
-      function endRace(winningCar) {
-        // Calculate winnings
-        let winnings = 0;
-        let resultMessage = "";
-        
-        if (gameState.bets[winningCar] > 0) {
-          winnings = gameState.bets[winningCar] * gameState.carOdds[winningCar];
-          gameState.money += winnings;
-          resultMessage = `You won $${winnings}! ${gameState.carNames[winningCar]} finished first.`;
-        } else {
-          // Check if any bets were placed
-          const totalBets = Object.values(gameState.bets).reduce((sum, bet) => sum + bet, 0);
-          if (totalBets > 0) {
-            resultMessage = `You lost $${totalBets}. ${gameState.carNames[winningCar]} finished first.`;
-          } else {
-            resultMessage = `${gameState.carNames[winningCar]} finished first. No bets were placed.`;
-          }
-        }
-        
-        // Update UI
-        raceInfo.innerText = `${gameState.carNames[winningCar]} wins the race!`;
-        resultText.innerText = resultMessage;
-        resultDisplay.style.display = "block";
-        updateMoneyDisplay();
-      }
-
-      // Function to reset the game
-      function resetGame() {
-        // Reset car positions
-        const cars = ['car-ae86', 'car-r32', 'car-s13'];
-        cars.forEach(carId => {
-          const car = document.getElementById(carId);
-          if (car) {
-            car.setAttribute('position', {
-              x: car.object3D.position.x,
-              y: car.object3D.position.y,
-              z: -10
-            });
-          }
-        });
-        
-        // Reset game state
-        gameState.raceStarted = false;
-        gameState.countdownActive = false;
-        gameState.winner = null;
-        gameState.bets = {
-          'car-ae86': 0,
-          'car-r32': 0,
-          'car-s13': 0
-        };
-        
-        // Update UI
-        cars.forEach(carId => updateBetDisplay(carId));
-        raceInfo.innerText = "Place your bets!";
-        resultDisplay.style.display = "none";
-        
-        // Check if player is broke
-        if (gameState.money <= 0) {
-          gameState.money = 1000; // Give them more money
-          moneyDisplay.innerText = `$${gameState.money}`;
-          raceInfo.innerText = "You went broke! Here's $1000 to try again.";
-        }
-      }
-
-      // Reset game button
-      restartButton.addEventListener('click', resetGame);
-      
-      // Initialize the display
-      updateMoneyDisplay();
-    });
-  </script>
 </body>
 </html>
