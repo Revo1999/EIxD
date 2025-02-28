@@ -30,9 +30,9 @@
 <div id="raceInfo">Place your bets to start the race!</div>
 
 <!-- Betting Buttons -->
-<button class="bet-button" id="bet-ae86" onclick="placeBet('AE86')">Bet on AE86 ($100)</button>
-<button class="bet-button" id="bet-r32" onclick="placeBet('R32')">Bet on R32 ($100)</button>
-<button class="bet-button" id="bet-s13" onclick="placeBet('S13')">Bet on S13 ($100)</button>
+<button class="bet-button" id="bet-ae86" onclick="placeBet('car-ae86')">Bet on AE86 ($100)</button>
+<button class="bet-button" id="bet-r32" onclick="placeBet('car-r32')">Bet on R32 ($100)</button>
+<button class="bet-button" id="bet-s13" onclick="placeBet('car-s13')">Bet on S13 ($100)</button>
 
 <!-- AR Scene -->
 <a-scene embedded arjs="sourceType: webcam;">
@@ -57,56 +57,62 @@
 <script>
   let money = 1000;
   let currentBet = null;
-  let carSpeeds = { 'AE86': 0.7, 'R32': 0.75, 'S13': 0.65 };
+  let raceStarted = false;
+  let winner = null;
+  const carOdds = { 'car-ae86': 3, 'car-r32': 2, 'car-s13': 4 };
 
   function placeBet(car) {
-    if (currentBet) return;
+    if (raceStarted) return;
     currentBet = car;
     money -= 100;
     document.getElementById('money').innerText = `Money: $${money}`;
     document.getElementById('raceInfo').innerText = `Bet placed on ${car}. Starting race...`;
     setTimeout(startRace, 2000);
   }
-  
+
+  function determineWinner() {
+    let totalOdds = Object.values(carOdds).reduce((sum, odd) => sum + odd, 0);
+    let random = Math.random() * totalOdds;
+    for (const carId in carOdds) {
+      random -= carOdds[carId];
+      if (random <= 0) return carId;
+    }
+  }
+
   function startRace() {
-    let raceStarted = true;
-    let winner = determineWinner();
+    raceStarted = true;
+    winner = determineWinner();
     document.getElementById('raceInfo').innerText = "Race in progress...";
-    
+
+    const baseSpeed = 0.7;
+    const carSpeeds = {
+      'car-ae86': baseSpeed + Math.random() * 0.09,
+      'car-r32': baseSpeed + Math.random() * 0.09,
+      'car-s13': baseSpeed + Math.random() * 0.09
+    };
+
     Object.keys(carSpeeds).forEach(carId => {
-      const car = document.getElementById(`car-${carId.toLowerCase()}`);
+      const car = document.getElementById(carId);
       if (car) {
         let currentPosition = car.object3D.position.z;
         let speed = carSpeeds[carId];
-
+        
         const interval = setInterval(() => {
           if (currentPosition >= 200) {
             clearInterval(interval);
             document.getElementById('raceInfo').innerText = `${winner} wins the race!`;
-            if (winner === currentBet) money += 300;
+            if (winner === currentBet) money += carOdds[winner] * 100;
             document.getElementById('money').innerText = `Money: $${money}`;
             currentBet = null;
+            raceStarted = false;
             return;
           }
+          if (currentPosition >= 140 && carId === winner) speed = 1.35;
           currentPosition += speed;
-          car.setAttribute('position', {
-            x: car.object3D.position.x,
-            y: car.object3D.position.y,
-            z: currentPosition
-          });
+          car.setAttribute('position', { x: car.object3D.position.x, y: car.object3D.position.y, z: currentPosition });
         }, 50);
       }
     });
-  }
-  
-  function determineWinner() {
-    const odds = { 'AE86': 3, 'R32': 2, 'S13': 4 };
-    let totalOdds = Object.values(odds).reduce((sum, odd) => sum + odd, 0);
-    let random = Math.random() * totalOdds;
-    for (const carId in odds) {
-      random -= odds[carId];
-      if (random <= 0) return carId;
-    }
   }
 </script>
 
