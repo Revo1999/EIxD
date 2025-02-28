@@ -60,6 +60,7 @@
   let raceStarted = false;
   let winner = null;
   const carOdds = { 'car-ae86': 3, 'car-r32': 2, 'car-s13': 4 };
+  const startPositions = { 'car-ae86': -10, 'car-r32': -10, 'car-s13': -10 };
 
   function placeBet(car) {
     if (raceStarted) return;
@@ -67,6 +68,7 @@
     money -= 100;
     document.getElementById('money').innerText = `Money: $${money}`;
     document.getElementById('raceInfo').innerText = `Bet placed on ${car}. Starting race...`;
+    resetCars();
     setTimeout(startRace, 2000);
   }
 
@@ -77,6 +79,15 @@
       random -= carOdds[carId];
       if (random <= 0) return carId;
     }
+  }
+
+  function resetCars() {
+    Object.keys(startPositions).forEach(carId => {
+      const car = document.getElementById(carId);
+      if (car) {
+        car.setAttribute('position', { x: car.object3D.position.x, y: car.object3D.position.y, z: startPositions[carId] });
+      }
+    });
   }
 
   function startRace() {
@@ -94,7 +105,7 @@
     Object.keys(carSpeeds).forEach(carId => {
       const car = document.getElementById(carId);
       if (car) {
-        let currentPosition = car.object3D.position.z;
+        let currentPosition = startPositions[carId];
         let speed = carSpeeds[carId];
         
         const interval = setInterval(() => {
